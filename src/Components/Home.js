@@ -6,12 +6,10 @@ import Typewriter from "typewriter-effect"
 import { useRef } from 'react';
 const Home = () => {
 	const ContactRef=useRef()
-
 //Slick-carousel
 	  var settings = {
 		autoplaySpeed:2000,
 		dots:false,
-	    arrows:true,
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		autoplay:true,
@@ -44,7 +42,7 @@ const Home = () => {
 	   var set={
 		autoplaySpeed:2000,
 		dots:false,
-	    arrows:true,
+	    // arrows:true,
 		autoplay:true,
 		pauseOnHover:true,
 		fade:true,
@@ -96,42 +94,64 @@ useEffect(() => {
 }, [])
 function handleScroll(e){
 	// console.log(e.srcElement.body.scrollTop)
+
 	if(window.pageYOffset>75){
 		ContactRef.current.style.display="block"
+		if(window.pageYOffset>3100){
+			ContactRef.current.style.display="none"
+	}
 	}
     else{
 		ContactRef.current.style.display="none"
 	}
 }
+function openNav() {
+	document.getElementById("mySidepanel").style.width = "20vw";
+  }
 
+  function closeNav() {
+	document.getElementById("mySidepanel").style.width = "0";
+  }
   return (
 <div id="body">
-<div onLoad={Tagline} >
-		<div style={{backgroundImage:"url(https://cdn.pixabay.com/photo/2012/08/06/00/53/bridge-53769_960_720.jpg)"}}>
-		<div style={{display:"flex",justifyContent:"space-around"}} >
-			<p className='text-warning my-4' style={{borderRadius:"24px"}}>
-				Trips
-			</p>
-			<div>
-                <h2 className="logo_img"style={{color:"#e89b9b",fontFamily:"slick"}}>mySittiVacation</h2>
-			</div>
-			<p onClick={handleContactShow} className='text-warning my-4'style={{borderRadius:"24px"}}>
-				Contact us
-			</p>
-		</div>
-		</div>
+	<div style={{display:"flex",justifyContent:"center"}}>
+           <img src='images/logo2.png' style={{height:"100px",zIndex:2,marginTop:"-2vh",position:"absolute",borderRadius:"24px"}}/>
+	</div>
+<div onLoad={Tagline}>
+<div id="mySidepanel" class="sidepanel">
+  <a href="javascript:void(0)" class="closebtn" onClick={closeNav}>×</a>
+  <a href="#">About us</a>
+  <a href="#">Explore</a>
+  <a href="#">Attractions</a>
+  <a href="#">CSR activities</a>
+  <a href="#">Support</a>
+  <a href="#">About us</a>
+  <a href="#">Services</a>
+  <a href="#">Reach us</a>
 
-	<div >
+  <a href="#">Reach us</a>
+</div>
+	            <div>
+<nav className="navbar navbar-expand-lg navbar-light nav_bar">
+
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item">
+	  <i className="bi bi-menu-button openbtn mx-4"onClick={openNav}style={{fontSize:"20px"}}></i>
+      </li>
+    </ul>
+  </div>
+</nav>
 		            <Slider {...set} >
 
 						<div>
-						<img style={{height:"400px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/sunset-sisters-monument-valley-usa_268835-1009.jpg?w=996&t=st=1674284891~exp=1674285491~hmac=74d3b3774ceea4b641f0284b48607137ab2e647073d2da4bbc53070195035be0"data-aos="zoom-out"/>
+						<img style={{height:"550px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/sunset-sisters-monument-valley-usa_268835-1009.jpg?w=996&t=st=1674284891~exp=1674285491~hmac=74d3b3774ceea4b641f0284b48607137ab2e647073d2da4bbc53070195035be0"data-aos="zoom-out"/>
 						</div>
 						<div>
-						<img style={{height:"400px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/beautiful-shot-small-lake-with-wooden-rowboat-focus-breathtaking-clouds-sky_181624-2490.jpg?w=996&t=st=1674284276~exp=1674284876~hmac=1faa6d69375ce28cd5b06a209f3a3ef21cfa21b7681d683d70d81320c135a575"data-aos="zoom-out"/>
+						<img style={{height:"550px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/beautiful-shot-small-lake-with-wooden-rowboat-focus-breathtaking-clouds-sky_181624-2490.jpg?w=996&t=st=1674284276~exp=1674284876~hmac=1faa6d69375ce28cd5b06a209f3a3ef21cfa21b7681d683d70d81320c135a575"data-aos="zoom-out"/>
 						</div>
 						<div>
-					    <img style={{height:"400px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/vestrahorn-mountains-stokksnes-iceland_335224-667.jpg?w=1060&t=st=1674284833~exp=1674285433~hmac=725cb81a8b8d9603a16efc84799864704490bd2b5185bdbc9a10a7ecda102195"data-aos="zoom-in"/>
+					    <img style={{height:"550px",width:"100%",borderRadius:"26px"}}src="https://img.freepik.com/free-photo/vestrahorn-mountains-stokksnes-iceland_335224-667.jpg?w=1060&t=st=1674284833~exp=1674285433~hmac=725cb81a8b8d9603a16efc84799864704490bd2b5185bdbc9a10a7ecda102195"data-aos="zoom-in"/>
 						</div>
                     </Slider>
 		</div>
@@ -154,11 +174,10 @@ function handleScroll(e){
 		       <div className="col-6 d-inline" >
 				   <div  style={{display:"flex",justifyContent:"space-between"}}>
 				   <button className='btn btn-warning' style={{marginTop:"8vh",
-    marginLeft:"-4vw"}} onClick={handleSearchShow}>Search</button>
-	               <div style={{position:"sticky"}}>
+                   marginLeft:"-4vw",borderRadius:"24px"}} onClick={handleSearchShow}>Search</button>
+	               <div style={{position:"fixed",marginLeft:"42vw"}}>
 	               <img onClick={handleContactShow} ref={ContactRef}src='images/contact-us.png' style={{height:"80px",width:"70px",display:"none",marginTop:"4vh"}} className="contact_img"/>
 	               </div>
-
 			       </div>
 				   {/* search-modal */}
 				   <Modal backdrop="static" show={searchModalshow} onHide={handleSearchClose} centered>
@@ -490,13 +509,13 @@ function handleScroll(e){
           <Modal.Title  style={{display:"flex",justifyContent:"center"}}><p style={{fontSize:"30px",color:"#d47373"}}>Feel free to contact us</p></Modal.Title>
         </Modal.Body>
         <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}>
-		                      <i class="bi bi-telephone-fill"></i> +91 123-456-7890<img style={{width:"300px"}} className="ms-2" src='images/logo.png'/>
+		                      <i className="bi bi-telephone-fill"></i> +91 123-456-7890<img style={{width:"300px"}} className="ms-2" src='images/logo.png'/>
 		</Modal.Body>
-        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i class="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i className="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
         <Modal.Body style={{textAlign:"center"}}>
-			<i style={{color:"green"}} class="bi bi-whatsapp mx-4" onClick={()=>{window.open("https://wa.me/+911234567890")}}></i>
-			<i style={{color:"#23c5f9"}} class="bi bi-telegram mx-4" onClick={()=>{window.open("https://t.me/mysittivacation")}}></i>
-			<i style={{color:"#23c5f9"}} class="bi bi-twitter mx-4" onClick={()=>{window.open("https://t.me/mysittivacation")}}></i>
+			<i style={{color:"green"}} className="bi bi-whatsapp mx-4" onClick={()=>{window.open("https://wa.me/+911234567890")}}></i>
+			<i style={{color:"#23c5f9"}} className="bi bi-telegram mx-4" onClick={()=>{window.open("https://t.me/mysittivacation")}}></i>
+			<i style={{color:"#23c5f9"}} className="bi bi-twitter mx-4" onClick={()=>{window.open("https://t.me/mysittivacation")}}></i>
 		</Modal.Body>
             </Modal>
         {/* About us Modal */}
@@ -507,14 +526,14 @@ function handleScroll(e){
         <Modal.Body >
           <Modal.Title  style={{display:"flex",justifyContent:"center"}}><p style={{fontSize:"30px",color:"#d47373"}}>About us</p></Modal.Title>
         </Modal.Body>
-        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i class="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i className="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
         <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i className="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
         <Modal.Body>
-			<i style={{color:"#3737ff"}} class="bi bi-facebook mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-twitter mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-instagram mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-youtube mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-pinterest mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-facebook mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-twitter mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-instagram mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-youtube mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-pinterest mx-4"></i>
 		</Modal.Body>
             </Modal>
         {/* DMCA Policy Modal */}
@@ -603,13 +622,13 @@ Email: [INSERT EMAIL ADDRESS]
 
 You acknowledge that if you fail to comply with all of the requirements, your DMCA notification may not be valid.
 		</Modal.Body>
-        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}} className="text-center"> <i class="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}} className="text-center"> <i className="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
         <Modal.Body style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-			<i style={{color:"#3737ff"}} class="bi bi-facebook mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-twitter mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-instagram mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-youtube mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-pinterest mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-facebook mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-twitter mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-instagram mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-youtube mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-pinterest mx-4"></i>
 		</Modal.Body>
             </Modal>
         {/*Terms and Conditions Modal */}
@@ -619,14 +638,14 @@ You acknowledge that if you fail to comply with all of the requirements, your DM
         <Modal.Body >
           <Modal.Title  style={{display:"flex",justifyContent:"center"}}><p style={{fontSize:"30px",color:"#d47373"}}>Terms and conditions</p></Modal.Title>
         </Modal.Body>
-        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i class="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
-        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i class="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i className="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i className="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
         <Modal.Body>
-			<i style={{color:"#3737ff"}} class="bi bi-facebook mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-twitter mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-instagram mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-youtube mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-pinterest mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-facebook mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-twitter mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-instagram mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-youtube mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-pinterest mx-4"></i>
 		</Modal.Body>
             </Modal>
         {/* Privacy Policy Modal */}
@@ -637,20 +656,20 @@ You acknowledge that if you fail to comply with all of the requirements, your DM
         <Modal.Body >
           <Modal.Title  style={{display:"flex",justifyContent:"center"}}><p style={{fontSize:"30px",color:"#d47373"}}>Privacy Policy</p></Modal.Title>
         </Modal.Body>
-        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i class="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
-        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i class="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("tel:+911234567890","_self")}}> <i className="bi bi-telephone-fill"></i> +91 123-456-789-0</Modal.Body>
+        <Modal.Body onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}> <i className="bi bi-envelope-fill"></i> vacations@mysittivacations.com</Modal.Body>
         <Modal.Body>
-			<i style={{color:"#3737ff"}} class="bi bi-facebook mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-twitter mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-instagram mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-youtube mx-4"></i>
-			<i style={{color:"#3737ff"}} class="bi bi-pinterest mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-facebook mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-twitter mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-instagram mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-youtube mx-4"></i>
+			<i style={{color:"#3737ff"}} className="bi bi-pinterest mx-4"></i>
 		</Modal.Body>
             </Modal>
 	    {/* Modal section ends */}
 						<div className="mailer-sec">
 							<img src="images/mail.png"/>
-							<a href="#">vacations@mysittivacations.com</a>
+							<a onClick={()=>{window.open("mailto:vacations@mysittivacations.com","_self")}}>vacations@mysittivacations.com</a>
 						</div>
 					</div>
 				</div>
